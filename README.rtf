@@ -1,0 +1,106 @@
+{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl\f0\fswiss\fcharset77 Helvetica;\f1\fswiss\fcharset77 Helvetica-Oblique;\f2\fswiss\fcharset77 Helvetica-Bold;
+}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f0\fs48 \cf0 LineNumberNoWrapTextDemo
+\fs24 \
+\
+written 2003-February by James S. Derry \'d0 http://www.balthisar.com\
+\
+Everything in this project that isn\'d5t owned by someone else is in the public domain. That means there\'d5s no copyright, and you can do what you want. Okay, in the USA there\'d5s an 
+\f1\i automatic
+\f0\i0  copyright that\'d5s implied by writing, so I guess I have to say explicitely that this is 
+\f1\i public domain
+\f0\i0 .\
+\
+
+\fs36 About
+\fs24 \
+This demo shows how I've manipulated NSTextView in order to (1) display line numbers and (2) turn word-wrapping on or off.\
+\
+The demo and the class are probably slightly misnamed, since 
+\f2\b JSDTextView
+\f0\b0  would seem to indicate an NSView subclass. This is not the case. 
+\f2\b JSDTextView
+\f0\b0  is actually an 
+\f2\b NSView
+\f0\b0  subclass the builds the 
+\f2\b NSTextView
+\f0\b0  by hand, including the enclosing 
+\f2\b NSScrollView
+\f0\b0  instance.\
+\
+To implement the view in a nib, make sure IB knows about the 
+\f2\b JSDTextView.h
+\f0\b0  file (i.e., drag it to your nib). You can then put a CustomView on your window or view, and change its custom class to 
+\f2\b JSDTextView
+\f0\b0 . Explore the header file for useful functions. Default instantiation in the program 
+\f1\i will
+\f0\i0  show line numbers and 
+\f1\i will not
+\f0\i0  wrap text.\
+\
+The downside to this approach is that you lose most of the IB configurability of an 
+\f2\b NSTextView
+\f0\b0 . Oh well; it's easy to do in code. Just remember that the 
+\f1\i real
+\f0\i0  
+\f2\b NSTextView
+\f0\b0  properties and methods are buried one level lower, i.e., use 
+\f2\b [[instance textView] methodName]
+\f0\b0  to work with the 
+\f1\i real
+\f0\i0  
+\f2\b NSTextView
+\f0\b0  instance. Again, look at the header file to see what else could be useful.\
+\
+Someday if there's interest and I have time, I could expose more of the buried-instance properties and write an Interface Builder palette for this class. After all, I need a good excuse to write one someday, and that's the only unused chapter in my Hillegas book!\
+\
+\
+
+\fs36 What\'d5s Involved
+\fs24 \
+
+\f2\b JSDText.h/.m
+\f0\b0 \
+	This is the component proper. The 
+\f2\b JSDTextView
+\f0\b0  class is the principle class; you should ignore the others and regard them as private unless you need some functionality therein.\
+\
+
+\f2\b AppDelegate.h/.m
+\f0\b0 \
+	This serves as the application delegate for the demo, but isn't really used as a delegate. It answers to the two check boxes to control the demo's word wrapping and line numbering.\
+\
+
+\f2\b MainMenu.nib
+\f0\b0 \
+	Contains the main window as well as well as menus and other goodies MainMenu.nib usually does.\
+\
+\
+
+\fs36 Why This is For You
+\fs24 \
+I hope to save you the trouble and time that it took me to figure out how to do this. Good luck!\
+\
+
+\fs36 Thanks!
+\fs24 \
+I \CocoaLigature0 I'd like to give especial thanks to Koen van der Drift <kvddrift@earthlink.net>, without whose code I wouldn't have gotten line numbering to work at all!\CocoaLigature1 \
+\
+
+\fs36 FAQ\'d5s (not literally FAQ\'d5s yet, but preemptive)
+\fs24 \
+
+\f2\b Why isn't line number one (1) shown on a new, blank JSDTextView instance until you type something?
+\f0\b0 \
+	The real answer is that NSLayoutManager hasn't drawn any glyphs on that line, thus there's no simple way to ascertain the coordinates to draw the line number. The answer I'm inclined to say is that I think this is proper behavior because until there's text there, there's no line that exists, not even a carriage return. As soon as you type a single character, you now have a line.\
+        \
+
+\f2\b Okay, aside from the first line, why isn't the line number shown when the cursor is on a new line all by itself at the end of the text?
+\f0\b0 \
+	I\'d5d have to say the same reason as above, i.e., there's no glyph and hence no coordinate to draw the line number. But I still think that this is proper behavior, for the same reasons above.\
+\
+}

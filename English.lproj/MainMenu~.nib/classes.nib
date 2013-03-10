@@ -1,0 +1,21 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {checkLine = id; checkWrap = id; }; 
+            CLASS = AppDelegate; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {textView = JSDTextView; }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = JSDNumberView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {
+            CLASS = JSDTextView; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {delegate = id; }; 
+            SUPERCLASS = NSView; 
+        }, 
+        {CLASS = JSDTextViewSub; LANGUAGE = ObjC; SUPERCLASS = NSTextView; }
+    ); 
+    IBVersion = 1; 
+}
